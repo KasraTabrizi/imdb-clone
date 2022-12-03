@@ -11,8 +11,8 @@ function App() {
   const [movies, error, loading] = useFetchMovies();
   return (
     <div className="App">
-      <div className="container"></div>
-      {/* {loading ? (
+      <div className="container__image"></div>
+      {loading ? (
         <div>loading...</div>
       ) : movies ? (
         <Box sx={{ flexGrow: 1 }}>
@@ -24,7 +24,7 @@ function App() {
         </Box>
       ) : (
         error && <div>error!</div>
-      )} */}
+      )}
     </div>
   );
 }
