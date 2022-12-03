@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+//IMPORT STYLES
+import "./App.css";
+import MovieCard from "./components/MovieCard";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+
+//IMPORT CUSTOM HOOKS
+import { useFetchMovies } from "./hooks/useFetchAPI";
 
 function App() {
+  const [movies, error, loading] = useFetchMovies();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? (
+        <div>loading...</div>
+      ) : movies ? (
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            {movies.map((movie) => {
+              return (
+                <Grid item xs={12} md={4}>
+                  <MovieCard movie={movie} key={movie.id} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
+      ) : (
+        error && <div>error!</div>
+      )}
     </div>
   );
 }
