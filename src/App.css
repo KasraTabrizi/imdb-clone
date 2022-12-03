@@ -3,6 +3,7 @@
   background-size: cover;
   height: 40vh;
   width: 100%;
+  position: relative;
 }
 
 .container__image::before {
@@ -12,4 +13,5 @@
   height: 40vh;
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
