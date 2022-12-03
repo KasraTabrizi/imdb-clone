@@ -11,23 +11,20 @@ function App() {
   const [movies, error, loading] = useFetchMovies();
   return (
     <div className="App">
-      {loading ? (
+      <div className="container"></div>
+      {/* {loading ? (
         <div>loading...</div>
       ) : movies ? (
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             {movies.map((movie) => {
-              return (
-                <Grid item xs={12} md={4}>
-                  <MovieCard movie={movie} key={movie.id} />
-                </Grid>
-              );
+              return <MovieCard movie={movie} key={movie.id} />;
             })}
           </Grid>
         </Box>
       ) : (
         error && <div>error!</div>
-      )}
+      )} */}
     </div>
   );
 }
