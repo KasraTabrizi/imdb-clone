@@ -1,8 +1,6 @@
 //IMPORT STYLES
 import "./App.css";
-import MovieCard from "./components/MovieCard";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Card from "./components/Card";
 
 //IMPORT CUSTOM HOOKS
 import { useFetchMovies } from "./hooks/useFetchAPI";
@@ -15,13 +13,11 @@ function App() {
       {loading ? (
         <div>loading...</div>
       ) : movies ? (
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
-            {movies.map((movie) => {
-              return <MovieCard movie={movie} key={movie.id} />;
-            })}
-          </Grid>
-        </Box>
+        <div className="movies__container">
+          {movies.map((movie) => {
+            return <Card movie={movie} />;
+          })}
+        </div>
       ) : (
         error && <div>error!</div>
       )}
