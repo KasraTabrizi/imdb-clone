@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+//comment
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState();
   const [error, setError] = useState();
