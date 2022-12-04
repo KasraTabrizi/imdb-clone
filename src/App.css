@@ -16,11 +16,14 @@
   z-index: 1;
 }
 
-.movies__container {
+/* .cards_list__container {
+} */
+
+.cards__container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   justify-items: center;
   column-gap: 15px;
   row-gap: 15px;
-  width: 100%;
+  width: 90%;
 }

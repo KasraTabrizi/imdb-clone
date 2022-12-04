@@ -34,5 +34,5 @@ export const useFetchMovies = () => {
     setFetchFilter();
   }, []);
 
-  return [movies, error, loading];
+  return [movies, error, loading, setFetchFilter];
 };
