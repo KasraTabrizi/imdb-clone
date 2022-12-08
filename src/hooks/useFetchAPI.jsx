@@ -31,7 +31,7 @@ export const useFetchMovies = () => {
   };
 
   useEffect(() => {
-    setFetchFilter();
+    setFetchFilter("nowPlaying");
   }, []);
 
   return [movies, error, loading, setFetchFilter];
