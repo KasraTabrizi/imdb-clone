@@ -4,9 +4,7 @@ export const useFetch = (url, query = "") => {
   const [data, setData] = useState(null);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
-  // if (filter === "trending") {
-  //   fetchType = `https://api.themoviedb.org/3/trending/movie/day`;
-  // }
+
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_BASE_URL}${url}?api_key=${

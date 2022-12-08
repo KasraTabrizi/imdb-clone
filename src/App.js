@@ -6,7 +6,9 @@ import { useFetch } from "./hooks/useFetchAPI";
 import InputSearch from "./components/InputSearch";
 
 function App() {
-  const [data] = useFetch("movie/now_playing");
+  const [switchOption, setSwitchOption] = useState("movie/now_playing");
+  const [optionState, setOptionState] = useState("Now Playing");
+  const [data] = useFetch(switchOption);
   const [showCardDetails, setShowCardDetails] = useState(false);
   const [cardId, setCardId] = useState(null);
   const [searchQuery, setSearchedQuery] = useState(null);
@@ -20,6 +22,16 @@ function App() {
     setShowCardDetails(false);
   };
 
+  const triggerPlayingNow = () => {
+    setSwitchOption("movie/now_playing");
+    setOptionState("Now Playing");
+  };
+
+  const triggerTrending = () => {
+    setSwitchOption("trending/movie/day");
+    setOptionState("Trending");
+  };
+
   return (
     <div className="App">
       {/* <div className="container__image"></div> */}
@@ -28,11 +40,17 @@ function App() {
       {showCardDetails ? (
         <CardDetails id={cardId} backButtonHandler={() => goToMainPage()} />
       ) : (
-        <CardList
-          name="Playing Now"
-          cards={searchQuery ? searchQuery.results : data?.results}
-          onClickShowDetails={(id) => cardDetailsHandler(id)}
-        />
+        <>
+          <div className="switch__container">
+            <button onClick={() => triggerPlayingNow()}>Playing Now</button>
+            <button onClick={() => triggerTrending()}>Trending</button>
+          </div>
+          <CardList
+            name={optionState}
+            cards={searchQuery ? searchQuery.results : data?.results}
+            onClickShowDetails={(id) => cardDetailsHandler(id)}
+          />
+        </>
       )}
     </div>
   );
