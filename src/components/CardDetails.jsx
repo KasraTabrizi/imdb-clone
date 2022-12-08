@@ -14,6 +14,22 @@ const CardDetails = ({ id, backButtonHandler }) => {
           <div className="poster__container"></div>
           <div className="details__container">
             <h2>{data.title}</h2>
+            <div className="extra__information">
+              <ul>
+                <li>{data.release_date}</li>
+                <li>
+                  {data.genres.map((genre) => {
+                    return <span>{genre.name}</span>;
+                  })}
+                </li>
+                <li>{data.runtime} min</li>
+              </ul>
+            </div>
+            <div className="tag_line">{data.tagline}</div>
+            <div className="description">
+              <h3>Description</h3>
+              <p>{data.overview}</p>
+            </div>
           </div>
         </div>
       )}
