@@ -2,20 +2,20 @@ import { useState } from "react";
 import "./App.css";
 import CardList from "./components/CardList";
 import CardDetails from "./components/CardDetails";
-import { useFetchMovies } from "./hooks/useFetchAPI";
+import { useFetch } from "./hooks/useFetchAPI";
 
 function App() {
-  const [data, error, loading, setFetchFilter] = useFetchMovies();
+  const [data, error, loading] = useFetch("now_playing");
   const [showCardDetails, setShowCardDetails] = useState(false);
+  const [cardId, setCardId] = useState(null);
 
   const cardDetailsHandler = (id) => {
     console.log(id);
-    setFetchFilter("getDetails", id);
+    setCardId(id);
     setShowCardDetails(true);
   };
 
   const goToMainPage = () => {
-    setFetchFilter("nowPlaying");
     setShowCardDetails(false);
   };
 
@@ -26,15 +26,13 @@ function App() {
       {/* TODO now playing and trending with button switch. */}
       {/* TODO Search result component */}
       {showCardDetails ? (
-        <CardDetails details={data} backButtonHandler={() => goToMainPage()} />
+        <CardDetails id={cardId} backButtonHandler={() => goToMainPage()} />
       ) : (
-        data && (
-          <CardList
-            name="Playing Now"
-            cards={data}
-            onClickShowDetails={(id) => cardDetailsHandler(id)}
-          />
-        )
+        <CardList
+          name="Playing Now"
+          cards={data?.results}
+          onClickShowDetails={(id) => cardDetailsHandler(id)}
+        />
       )}
     </div>
   );

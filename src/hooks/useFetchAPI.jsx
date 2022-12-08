@@ -1,38 +1,35 @@
 import { useEffect, useState } from "react";
 
-export const useFetchMovies = () => {
-  const [movies, setMovies] = useState();
+export const useFetch = (url) => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
 
-  const setFetchFilter = (filter = "discover", query = "") => {
-    let fetchType = "";
-    if (filter === "discover") {
-      fetchType = `https://api.themoviedb.org/3/discover/movie`;
-    }
-    if (filter === "nowPlaying") {
-      fetchType = `https://api.themoviedb.org/3/movie/now_playing`;
-    }
-    if (filter === "getDetails") {
-      fetchType = `https://api.themoviedb.org/3/movie/${query}`;
-    }
-    if (filter === "trending") {
-      fetchType = `https://api.themoviedb.org/3/trending/movie/day`;
-    }
+  // if (filter === "discover") {
+  //   fetchType = `https://api.themoviedb.org/3/discover/movie`;
+  // }
+  // if (filter === "nowPlaying") {
+  //   fetchType = `https://api.themoviedb.org/3/movie/now_playing`;
+  // }
+  // if (filter === "getDetails") {
+  //   fetchType = `https://api.themoviedb.org/3/movie/${query}`;
+  // }
+  // if (filter === "trending") {
+  //   fetchType = `https://api.themoviedb.org/3/trending/movie/day`;
+  // }
 
-    fetch(`${fetchType}?api_key=${process.env.REACT_APP_API_KEY}`)
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${url}?api_key=${process.env.REACT_APP_API_KEY}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMovies(data.results);
+        setData(data);
       })
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
-  };
+  }, [url]);
 
-  useEffect(() => {
-    setFetchFilter("nowPlaying");
-  }, []);
-
-  return [movies, error, loading, setFetchFilter];
+  return [data, error, loading];
 };
