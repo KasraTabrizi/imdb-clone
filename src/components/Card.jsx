@@ -5,7 +5,7 @@ const Card = ({ movie, onClickShowDetails }) => {
   return (
     <div
       className="card__container"
-      onClick={(id) => onClickShowDetails(id)(movie.id)}
+      onClick={() => onClickShowDetails(movie.id)}
     >
       <div className="image__box">
         <img
