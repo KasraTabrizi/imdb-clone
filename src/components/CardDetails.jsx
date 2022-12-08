@@ -2,9 +2,7 @@ import React from "react";
 import { useFetch } from "../hooks/useFetchAPI";
 
 const CardDetails = ({ id, backButtonHandler }) => {
-  const [data, error, loading] = useFetch(id);
-  console.log(id);
-  console.log(data);
+  const [data, error, loading] = useFetch(`movie/${id}`);
   return (
     <div>
       <button onClick={() => backButtonHandler()}>Go Back</button>
