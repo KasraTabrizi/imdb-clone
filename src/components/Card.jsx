@@ -13,6 +13,8 @@ const Card = ({ movie, onClickShowDetails }) => {
           alt={`${movie.title}_poster`}
         />
       </div>
+      <h4>{movie.title}</h4>
+      <p>{movie.release_date}</p>
     </div>
   );
 };

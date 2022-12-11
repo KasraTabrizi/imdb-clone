@@ -6,10 +6,11 @@ export const useFetch = (url, query = "") => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `${process.env.REACT_APP_BASE_URL}${url}?api_key=${
         process.env.REACT_APP_API_KEY
-      }${query ? "&query=" + query : ""}`
+      }${query && "&query=" + query}`
     )
       .then((res) => res.json())
       .then((data) => {

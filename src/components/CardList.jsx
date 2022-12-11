@@ -1,12 +1,15 @@
 import React from "react";
 import Card from "./Card";
 
-const CardList = ({ name, cards, onClickShowDetails }) => {
+const CardList = ({ name, cards, onClickShowDetails, stateData }) => {
   return (
     <div className="cards_list__container">
       <h2>{name}</h2>
       <div className="cards__container">
-        {cards &&
+        {stateData.error ? (
+          <div>loading...</div>
+        ) : (
+          cards &&
           cards.map((movie) => {
             return (
               <Card
@@ -15,7 +18,8 @@ const CardList = ({ name, cards, onClickShowDetails }) => {
                 onClickShowDetails={(id) => onClickShowDetails(id)}
               />
             );
-          })}
+          })
+        )}
       </div>
     </div>
   );
