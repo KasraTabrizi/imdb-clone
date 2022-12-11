@@ -1,15 +1,20 @@
 import React from "react";
+import "./CardDetails.css";
 import { useFetch } from "../hooks/useFetchAPI";
 
 const CardDetails = ({ id, backButtonHandler }) => {
   const [data] = useFetch(`movie/${id}`);
   return (
-    <div>
+    <div className="card_details_main__container">
       <button onClick={() => backButtonHandler()}>Go Back</button>
-      <h1>Card Details</h1>
       {data && (
         <div className="card_details__container">
-          <div className="poster__container"></div>
+          <div className="poster__container">
+            <img
+              src={`https://image.tmdb.org/t/p/w300/${data.poster_path}`}
+              alt={`${data.title}_poster`}
+            />
+          </div>
           <div className="details__container">
             <h2>{data.title}</h2>
             <div className="extra__information">
@@ -23,9 +28,11 @@ const CardDetails = ({ id, backButtonHandler }) => {
                 <li>{data.runtime} min</li>
               </ul>
             </div>
-            <div className="tag_line">{data.tagline}</div>
+            <div className="tag_line">
+              <i>{data.tagline}</i>
+            </div>
             <div className="description">
-              <h3>Description</h3>
+              <h3>Overview</h3>
               <p>{data.overview}</p>
             </div>
           </div>
