@@ -54,13 +54,13 @@ function App() {
         <>
           <div className="switch__container">
             <button
-              className={optionState === "Now Playing" && "button_active"}
+              className={optionState === "Now Playing" ? "button_active" : ""}
               onClick={() => triggerPlayingNow()}
             >
               Playing Now
             </button>
             <button
-              className={optionState === "Trending" && "button_active"}
+              className={optionState === "Trending" ? "button_active" : ""}
               onClick={() => triggerTrending()}
             >
               Trending
