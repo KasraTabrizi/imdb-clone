@@ -3,16 +3,10 @@ import { useFetch } from "../hooks/useFetchAPI";
 
 const InputSearch = ({ onSearchHandler }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [queryData, setQueryData] = useState("");
-  const [data] = useFetch("search/movie", queryData);
+  const [data] = useFetch("search/movie", searchInput);
 
   const onChangeInput = (e) => {
     setSearchInput(e.target.value);
-  };
-
-  const onClickHandler = () => {
-    setQueryData(searchInput);
-    onSearchHandler(data);
   };
 
   return (
@@ -23,7 +17,7 @@ const InputSearch = ({ onSearchHandler }) => {
         placeholder="Search for a movie..."
         onChange={(value) => onChangeInput(value)}
       />
-      <button onClick={() => onClickHandler()}>Search</button>
+      <button onClick={() => onSearchHandler(data)}>Search</button>
     </div>
   );
 };
