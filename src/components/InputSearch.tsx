@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useFetch } from "../hooks/useFetchAPI";
 
-const InputSearch = ({ onSearchHandler }) => {
+interface InputSearchProps {
+  onSearchHandler: Function;
+}
+
+const InputSearch: React.FC<InputSearchProps> = ({ onSearchHandler }) => {
   const [searchInput, setSearchInput] = useState("");
   const [data] = useFetch("search/movie", searchInput);
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: any) => {
     setSearchInput(e.target.value);
   };
 

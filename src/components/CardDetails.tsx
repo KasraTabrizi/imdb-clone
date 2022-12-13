@@ -2,7 +2,12 @@ import React from "react";
 import "./CardDetails.css";
 import { useFetch } from "../hooks/useFetchAPI";
 
-const CardDetails = ({ id, backButtonHandler }) => {
+interface CardDetailsProps {
+  id: Number;
+  backButtonHandler: Function;
+}
+
+const CardDetails: React.FC<CardDetailsProps> = ({ id, backButtonHandler }) => {
   const [data] = useFetch(`movie/${id}`);
   return (
     <div className="card_details_main__container">
@@ -21,7 +26,7 @@ const CardDetails = ({ id, backButtonHandler }) => {
               <ul>
                 <li>{data.release_date}</li>
                 <li>
-                  {data.genres.map((genre) => {
+                  {data.genres.map((genre: any) => {
                     return <span>{genre.name}</span>;
                   })}
                 </li>

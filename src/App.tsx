@@ -1,19 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import CardList from "./components/CardList";
 import CardDetails from "./components/CardDetails";
 import { useFetch } from "./hooks/useFetchAPI";
 import InputSearch from "./components/InputSearch";
 
-function App() {
+const App: React.FC = () => {
   const [switchOption, setSwitchOption] = useState("movie/now_playing");
   const [optionState, setOptionState] = useState("Now Playing");
-  const [data, error, loading] = useFetch(switchOption);
+  const [data] = useFetch(switchOption);
   const [showCardDetails, setShowCardDetails] = useState(false);
-  const [cardId, setCardId] = useState(null);
-  const [searchQuery, setSearchedQuery] = useState(null);
+  const [cardId, setCardId] = useState(0);
+  const [searchQuery, setSearchedQuery] = useState<any>(null);
 
-  const cardDetailsHandler = (id) => {
+  const cardDetailsHandler = (id: any) => {
     setCardId(id);
     setShowCardDetails(true);
   };
@@ -34,7 +34,7 @@ function App() {
     setSearchedQuery(null);
   };
 
-  const triggerSearchResults = (data) => {
+  const triggerSearchResults = (data: any) => {
     setSearchedQuery(data);
     setOptionState("Search results");
   };
@@ -42,7 +42,9 @@ function App() {
   return (
     <div className="App">
       <div className="container__image">
-        <InputSearch onSearchHandler={(data) => triggerSearchResults(data)} />
+        <InputSearch
+          onSearchHandler={(data: any) => triggerSearchResults(data)}
+        />
       </div>
       {showCardDetails ? (
         <CardDetails
@@ -69,13 +71,12 @@ function App() {
           <CardList
             name={optionState}
             cards={searchQuery ? searchQuery.results : data?.results}
-            onClickShowDetails={(id) => cardDetailsHandler(id)}
-            stateData={(error, loading)}
+            onClickShowDetails={(id: Number) => cardDetailsHandler(id)}
           />
         </>
       )}
     </div>
   );
-}
+};
 
 export default App;
