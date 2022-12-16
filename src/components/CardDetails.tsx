@@ -1,5 +1,5 @@
 import React from "react";
-import "./CardDetails.css";
+import "../styles/CardDetails.css";
 import { useFetch } from "../hooks/useFetchAPI";
 
 interface CardDetailsProps {
