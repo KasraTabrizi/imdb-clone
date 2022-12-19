@@ -4,9 +4,9 @@ import "../styles/Card.css";
 interface CardProps {
   movieDetails: {
     id: Number;
-    poster_path: String;
-    title: String;
-    release_date: String;
+    poster_path: string;
+    title: string;
+    release_date: string;
   };
   onClickShowDetails: Function;
 }

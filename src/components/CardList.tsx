@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 
 interface CardListProps {
-  name: String;
+  name: string;
   cards: { movie: Object }[];
   onClickShowDetails: Function;
 }
