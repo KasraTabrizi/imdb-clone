@@ -4,10 +4,10 @@ import { useFetch } from "../hooks/useFetchAPI";
 
 interface CardDetailsProps {
   id: Number;
-  backButtonHandler: Function;
+  backButtonHandler: () => void;
 }
 
-const CardDetails: React.FC<CardDetailsProps> = ({ id, backButtonHandler }) => {
+const CardDetails = ({ id, backButtonHandler }: CardDetailsProps) => {
   const [data] = useFetch(`movie/${id}`);
   return (
     <div className="card_details_main__container">
