@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFetch } from "../hooks/useFetchAPI";
 
 interface InputSearchProps {
-  onSearchHandler: Function;
+  onSearchHandler: (value: string) => void;
 }
 
 const InputSearch: React.FC<InputSearchProps> = ({ onSearchHandler }) => {

@@ -8,7 +8,7 @@ interface CardProps {
     title: string;
     release_date: string;
   };
-  onClickShowDetails: Function;
+  onClickShowDetails: (id: Number) => void;
 }
 
 const Card: React.FC<CardProps> = ({ movieDetails, onClickShowDetails }) => {

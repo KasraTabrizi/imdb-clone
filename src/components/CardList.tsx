@@ -4,7 +4,7 @@ import Card from "./Card";
 interface CardListProps {
   name: string;
   cards: { movie: Object }[];
-  onClickShowDetails: Function;
+  onClickShowDetails: (id: Number) => void;
 }
 
 const CardList: React.FC<CardListProps> = ({
