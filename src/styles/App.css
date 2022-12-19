@@ -1,5 +1,5 @@
 .container__image {
-  background: url("./assets/main_backdrop.jpeg") no-repeat center;
+  background: url("../assets/main_backdrop.jpeg") no-repeat center;
   background-size: cover;
   height: 40vh;
   width: 100%;

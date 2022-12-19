@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import CardList from "./components/CardList";
 import CardDetails from "./components/CardDetails";
 import { useFetch } from "./hooks/useFetchAPI";
 import InputSearch from "./components/InputSearch";
 
 const App: React.FC = () => {
-  const [switchOption, setSwitchOption] = useState("movie/now_playing");
+  const [endpoint, setEndpoint] = useState("movie/now_playing");
   const [optionState, setOptionState] = useState("Now Playing");
-  const [data] = useFetch(switchOption);
+  const [queryValue, setQueryValue] = useState("");
+  const [data] = useFetch(endpoint, queryValue);
   const [showCardDetails, setShowCardDetails] = useState(false);
   const [cardId, setCardId] = useState(0);
-  const [searchQuery, setSearchedQuery] = useState<any>(null);
 
   const cardDetailsHandler = (id: any) => {
     setCardId(id);
@@ -23,19 +23,20 @@ const App: React.FC = () => {
   };
 
   const triggerPlayingNow = () => {
-    setSwitchOption("movie/now_playing");
+    setEndpoint("movie/now_playing");
     setOptionState("Now Playing");
-    setSearchedQuery(null);
+    setQueryValue("");
   };
 
   const triggerTrending = () => {
-    setSwitchOption("trending/movie/day");
+    setEndpoint("trending/movie/day");
     setOptionState("Trending");
-    setSearchedQuery(null);
+    setQueryValue("");
   };
 
-  const triggerSearchResults = (data: any) => {
-    setSearchedQuery(data);
+  const triggerSearchResults = (query: string) => {
+    setEndpoint("search/movie");
+    setQueryValue(query);
     setOptionState("Search results");
   };
 
@@ -43,7 +44,7 @@ const App: React.FC = () => {
     <div className="App">
       <div className="container__image">
         <InputSearch
-          onSearchHandler={(data: any) => triggerSearchResults(data)}
+          onSearchHandler={(query: string) => triggerSearchResults(query)}
         />
       </div>
       {showCardDetails ? (
@@ -70,7 +71,7 @@ const App: React.FC = () => {
           </div>
           <CardList
             name={optionState}
-            cards={searchQuery ? searchQuery.results : data?.results}
+            cards={data?.results}
             onClickShowDetails={(id: Number) => cardDetailsHandler(id)}
           />
         </>

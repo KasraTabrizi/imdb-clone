@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useFetch } from "../hooks/useFetchAPI";
 
 interface InputSearchProps {
   onSearchHandler: (value: string) => void;
@@ -7,7 +6,6 @@ interface InputSearchProps {
 
 const InputSearch: React.FC<InputSearchProps> = ({ onSearchHandler }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [data] = useFetch("search/movie", searchInput);
 
   const onChangeInput = (e: any) => {
     setSearchInput(e.target.value);
@@ -21,7 +19,7 @@ const InputSearch: React.FC<InputSearchProps> = ({ onSearchHandler }) => {
         placeholder="Search for a movie..."
         onChange={(value) => onChangeInput(value)}
       />
-      <button onClick={() => onSearchHandler(data)}>Search</button>
+      <button onClick={() => onSearchHandler(searchInput)}>Search</button>
     </div>
   );
 };
