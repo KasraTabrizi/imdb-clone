@@ -5,7 +5,7 @@ export const useFetch = (
   query: string = ""
 ): [any, any, boolean] => {
   const [data, setData] = useState(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,10 +17,13 @@ export const useFetch = (
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("data", data);
         setData(data);
       })
-      .catch((err) => setError(err))
+      .catch((err) => {
+        console.log("error", err);
+        setError(err);
+      })
       .finally(() => setLoading(false));
   }, [url, query]);
 

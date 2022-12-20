@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [endpoint, setEndpoint] = useState("movie/now_playing");
   const [optionState, setOptionState] = useState("Now Playing");
   const [queryValue, setQueryValue] = useState("");
-  const [data] = useFetch(endpoint, queryValue);
+  const [data, error, loading] = useFetch(endpoint, queryValue);
   const [showCardDetails, setShowCardDetails] = useState(false);
   const [cardId, setCardId] = useState(0);
 
@@ -69,11 +69,17 @@ const App: React.FC = () => {
               Trending
             </button>
           </div>
-          <CardList
-            name={optionState}
-            cards={data?.results}
-            onClickShowDetails={(id: Number) => cardDetailsHandler(id)}
-          />
+          {loading ? (
+            <h3 className="loading__container">loading...</h3>
+          ) : !error ? (
+            <h3 className="error__container">{error.errors}</h3>
+          ) : (
+            <CardList
+              name={optionState}
+              cards={data?.results}
+              onClickShowDetails={(id: Number) => cardDetailsHandler(id)}
+            />
+          )}
         </>
       )}
     </div>
