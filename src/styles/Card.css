@@ -1,8 +1,8 @@
 .card__container {
   max-width: 150px;
-
   cursor: pointer;
   transition: 0.2s all ease-in-out;
+  margin: 10px;
 }
 
 .card__container:hover {
