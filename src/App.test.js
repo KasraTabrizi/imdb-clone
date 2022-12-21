@@ -1,8 +1,22 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+test("renders main app", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  //We make the two buttons are displayed
+  expect(screen.getByText(/Playing now/i)).toBeInTheDocument();
+  expect(screen.getByText(/Trending/i)).toBeInTheDocument();
+
+  //We do a test search
+  const input = screen.getByPlaceholderText("Search for a movie...");
+  const searchButton = screen.getByText("Search");
+  fireEvent.change(input, { target: { value: "avatar" } });
+  fireEvent.click(searchButton);
+  //Wait for the results
+  await waitFor(() => screen.findByText("Search Results"));
+
+  expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+  expect(
+    screen.getAllByRole("heading", { name: "Avatar" }).length
+  ).toBeGreaterThanOrEqual(1);
 });
