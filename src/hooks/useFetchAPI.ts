@@ -16,14 +16,8 @@ export const useFetch = (
       }${query.length > 1 ? "&query=" + query : ""}`
     )
       .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        setData(data);
-      })
-      .catch((err) => {
-        console.log("error", err);
-        setError(err);
-      })
+      .then((data) => setData(data))
+      .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, [url, query]);
 
