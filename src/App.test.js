@@ -10,13 +10,13 @@ test("renders main app", async () => {
   //We do a test search
   const input = screen.getByPlaceholderText("Search for a movie...");
   const searchButton = screen.getByText("Search");
-  fireEvent.change(input, { target: { value: "avatar" } });
+  fireEvent.change(input, { target: { value: "matrix" } });
   fireEvent.click(searchButton);
   //Wait for the results
   await waitFor(() => screen.findByText("Search Results"));
 
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   expect(
-    screen.getAllByRole("heading", { name: "Avatar" }).length
+    screen.getAllByRole("heading", { name: "Search Results" }).length
   ).toBeGreaterThanOrEqual(1);
 });
