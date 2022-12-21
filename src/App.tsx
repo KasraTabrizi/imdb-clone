@@ -7,7 +7,9 @@ import InputSearch from "./components/InputSearch";
 
 const App: React.FC = () => {
   const [endpoint, setEndpoint] = useState("movie/now_playing");
-  const [optionState, setOptionState] = useState("Now Playing");
+  const [optionState, setOptionState] = useState<
+    "Now Playing" | "Trending" | "Search Results"
+  >("Now Playing");
   const [queryValue, setQueryValue] = useState("");
   const [data, error, loading] = useFetch(endpoint, queryValue);
   const [showCardDetails, setShowCardDetails] = useState(false);
@@ -37,7 +39,7 @@ const App: React.FC = () => {
   const triggerSearchResults = (query: string) => {
     setEndpoint("search/movie");
     setQueryValue(query);
-    setOptionState("Search results");
+    setOptionState("Search Results");
   };
 
   return (
@@ -70,7 +72,7 @@ const App: React.FC = () => {
             </button>
           </div>
           {loading ? (
-            <h3 className="loading__container">loading...</h3>
+            <h3 className="loading__container">Loading...</h3>
           ) : !error ? (
             <h3 className="error__container">{error.errors}</h3>
           ) : (

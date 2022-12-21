@@ -15,7 +15,7 @@ const CardList: React.FC<CardListProps> = ({
   return (
     <div className="cards_list__container">
       <h2>{name}</h2>
-      <div className="cards__container">
+      <div className="cards__list">
         {cards &&
           cards.map((movie: any) => {
             return (

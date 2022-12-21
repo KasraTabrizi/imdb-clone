@@ -64,7 +64,7 @@
   font-size: 2em;
 }
 
-.cards__container {
+.cards__list {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
@@ -94,4 +94,14 @@
   background-color: #5090d3 !important;
   color: white;
   font-weight: 600;
+}
+
+.loading__container,
+.error__container {
+  text-align: center;
+  font-size: 2em;
+}
+
+.error__container {
+  color: red;
 }
