@@ -27,7 +27,7 @@ const CardDetails = ({ id, backButtonHandler }: CardDetailsProps) => {
                 <li>{data.release_date}</li>
                 <li>
                   {data.genres.map((genre: any) => {
-                    return <span>{genre.name}</span>;
+                    return <span key={genre.name}>{genre.name}</span>;
                   })}
                 </li>
                 <li>{data.runtime} min</li>
