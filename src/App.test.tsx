@@ -3,7 +3,7 @@ import App from "./App";
 
 test("renders main app", async () => {
   render(<App />);
-  //We make the two buttons are displayed
+  //We make the two buttons are displayed d
   expect(screen.getByText(/Playing now/i)).toBeInTheDocument();
   expect(screen.getByText(/Trending/i)).toBeInTheDocument();
 
