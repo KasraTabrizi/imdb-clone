@@ -1,12 +1,6 @@
 import React from "react";
 import Card from "./Card";
 
-interface CardListProps {
-  name: string;
-  cards: { movie: Object }[];
-  onClickShowDetails: (id: Number) => void;
-}
-
 const CardList: React.FC<CardListProps> = ({
   name,
   cards,

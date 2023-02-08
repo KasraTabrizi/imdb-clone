@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 
-interface InputSearchProps {
-  onSearchHandler: (value: string) => void;
-}
-
 const InputSearch: React.FC<InputSearchProps> = ({ onSearchHandler }) => {
   const [searchInput, setSearchInput] = useState("");
 

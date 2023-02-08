@@ -2,11 +2,6 @@ import React from "react";
 import "../styles/CardDetails.css";
 import { useFetch } from "../hooks/useFetchAPI";
 
-interface CardDetailsProps {
-  id: Number;
-  backButtonHandler: () => void;
-}
-
 const CardDetails = ({ id, backButtonHandler }: CardDetailsProps) => {
   const [data] = useFetch(`movie/${id}`);
   return (
